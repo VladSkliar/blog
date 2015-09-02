@@ -1,1 +1,1 @@
-web: gunicorn minisite.wgsi
+web: python manage.py runserver

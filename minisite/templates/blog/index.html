@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load l10n%}
+
+{% block title %}
+{% trans 'Blog' %}
+{% endblock %}
+
+{% block header %}
+    <h1>{% trans 'The last posts' %}</h1>
+    <hr class="small">
+    <span class="subheading">{% trans 'The last post in our blog' %}</span>
+{% endblock %}
+
+
+{% block list %}
+{% for post in object_list %}
+    <a href="{% url 'post_detail' pk=post.id %}">
+    <h2 class="post-title">
+        {{ post.title }}
+    </h2>
+    </a>
+    <p class="post-meta">{% trans 'Author' %} - {{ post.author }}, <small>{{ post.created_at }}</small></p>
+{% empty %}
+  <h1>{% trans 'Blog haven`t post' %}</h1>
+{% endfor %}
+{% endblock %}

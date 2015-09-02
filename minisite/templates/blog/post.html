@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% load disqus_tags %}
+{% load i18n %}
+{% load l10n%}
+{% load staticfiles %}
+
+{% block title %}
+{{ post.title }}
+{% endblock %}
+
+{% block style %}
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
+<script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+<script src=" {% static 'js/bootstrap-rating-input.js' %}"></script>
+{% endblock %}
+
+{% block header %}
+<h2>{{ post.title }}</h2>
+{% endblock %}
+{% block article %}
+  {% if post.is_active == True %}
+    <h1>{{ post.title }}</h1>
+    {{ post.text|safe }}
+    <p>{% trans 'Author' %}: {{ post.author }} </p>
+    <p>{% trans 'Date published' %}: {{ post.created_at}}</p>
+    <p>
+      {% if user == post.author %}
+        <a href="{% url 'update_post' pk=post.id %}">
+          <button class="btn btn-info"> {% trans 'Update post' %}</button>
+        </a>
+        <a href="{% url 'activate_post' pk=post.id %}">
+          <button type="submit" class="btn btn-danger"> {% trans 'Deactivate' %}</button>
+        </a>
+      {% endif %}
+    </p>
+  {% elif user == post.author %}
+    <h1>{{ post.title }}</h1>
+    {{ post.text|safe }}
+    <p>{% trans 'Author' %}: {{ post.author }} </p>
+    <p>{% trans 'Date published' %}: {{ post.created_at}}</p>
+    <p>
+      <a href="{% url 'update_post' pk=post.id %}">
+        <button class="btn btn-info">{% trans 'Update post' %}</button>
+      </a>
+      <a href="{% url 'activate_post' pk=post.id %}">
+        <button type="submit" class="btn btn-success">{% trans 'Activate' %}</button>
+      </a>
+    </p>
+  {%else%}
+    <h3>{% trans 'Sorry, but this post isn`t active' %}</h3>
+  {% endif %}
+  <form action="" method="post" class='rate'>
+    {% csrf_token %}
+    <input type="number" name="My Rating System" id="Demo" class="rating" data-clearable="remove"/>
+  </form>
+  {% disqus_show_comments %}
+{% endblock%}

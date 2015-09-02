@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load l10n%}
+{% load staticfiles %}
+
+{% block title %}
+{% trans 'Update post' %}
+{% endblock %}
+
+{% block header %}
+  <h1>{% trans 'Update post' %}</h1>
+{% endblock %}
+
+{% block column1 %}
+  <form method="post" role="form">
+    {% csrf_token %}
+    <div class="form-group">
+      <label for="title">{% trans 'Title' %}:</label>
+      <input class="form-control" type="text" name="title"  id="title" value={{form.title.value|default_if_none:""}}>
+      {%if form.title.errors%}
+        <div class="alert alert-danger" role="alert">
+          {{form.title.errors}}
+        </div>
+      {%endif%}
+    </div>
+    <div class="form-group">
+      <label for="datepicker">{% trans 'Publication date' %}:</label>
+      <input class="form-control" type="text" name="publication_date" id="datepicker" value={{form.publication_date.value|default_if_none:""|date:"SHORT_DATE_FORMAT"}}>
+      {%if form.publication_date.errors%}
+        <div class="alert alert-danger" role="alert">
+          {{form.publication_date.errors}}
+        </div>
+      {%endif%}
+    </div>
+    <div class="form-group">
+      <label>{% trans 'Text of post' %}:</label>
+      {{ form.media }}
+      {{ form.text}}
+      {%if form.text.errors%}
+        <div class="alert alert-danger" role="alert">
+          {{form.text.errors}}
+        </div>
+      {%endif%}
+    </div>
+    <button type="submit" class="btn btn-success">{% trans 'Update post' %}</button>
+  </form>
+      <script src="{% static 'js/datepicker.js' %}"></script>
+{%endblock%}

@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load l10n%}
+{% block title %}
+  {% trans 'My posts' %}
+{% endblock %}
+
+{%block header%}
+  <h2>{% trans 'My posts' %}</h2>
+{%endblock header%}
+
+{% block list %}
+{% for post in object_list %}
+    <a href="{% url 'post_detail' pk=post.id %}">
+    <h2 class="post-title">
+        {{ post.title }}
+    </h2>
+    </a>
+    {% if post.is_active == True %}
+            <b><p> {% trans 'Post is active' %}</p></b>
+          {%else%}
+            <b><p> {% trans 'Post is deactive' %}</p></b>
+          {%endif%}
+    <p class="post-meta"><small>{{ post.created_at }}</small></p>
+{% empty %}
+  <h1>{% trans 'You haven`t post' %}</h1>
+{% endfor %}
+<div class="container">
+        <br><a href="{% url 'create_post'%}"><button class="btn btn-success">{% trans 'Create your post' %}</button></a>
+      </div>
+{% endblock %}
+
+

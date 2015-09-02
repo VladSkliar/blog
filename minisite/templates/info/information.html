@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% load thumbnail %}
+{% load i18n %}
+{% load l10n%}
+
+{% block title %}
+{% trans 'Information' %}
+{% endblock %}
+
+{%block header%}
+<script type="text/javascript" src="{% static 'js/fancybox/fancybox_js/jquery.mousewheel-3.0.6.pack.js' %}"></script>
+<link rel="stylesheet" href="{% static 'js/fancybox/source/jquery.fancybox.css' %}" type="text/css" media="screen" />
+<script type="text/javascript" src="{% static 'js/fancybox/source/jquery.fancybox.pack.js' %}"></script>
+
+  <h3>{% trans 'Welcome' %}, {{ user.username }}.{% trans 'Thanks for loggin' %} .</h3>
+
+{%endblock header%}
+
+{%block column2%}
+    {%if info%}
+      <label>{% trans 'Photo' %}:</label>
+      {% if info.image %}
+        <a class="fancybox" href="{{ info.image.url }}">
+          {% thumbnail info.image "100x100"  as im %}
+            <img src="{{ im.url }}" />
+          {% endthumbnail %}
+        </a>
+      {% endif%}<br>
+      <label>{% trans 'First name' %}: {{ info.first_name }}</label><br>
+      <label>{% trans 'Last name' %}: {{ info.last_name }}</label><br>
+      <label >{% trans 'Biography' %}: {{ info.bio }}</label><br>
+      <label>{% trans 'Birtdate' %}: {{ info.birthdate }}</label><br>
+      <label for="email">{% trans 'Email' %}: {{ info.user.email }}</label><br>
+      <label>{% trans 'Jabber' %}: {{ info.jabber }}</label><br>
+      <label for="skype">{% trans 'Skype' %}: {{ info.skype }}</label><br>
+      <label for="other_contacts">{% trans 'Ohter contacts' %}: {{ info.other_contacts }}</label>
+    <br><a href="{% url 'edit' pk=info.id%}"><button class="btn btn-success">{% trans 'Change your information' %}</button></a>
+    {%else%}
+      <h3>{% trans 'Please enter your information' %}</h3><br>
+      <a href="{% url 'create_info' %}"><button class="btn btn-success">{% trans 'Enter your information' %}</button></a>
+    {%endif%}
+  <script src="{% static 'js/fancybox.js' %}"></script>
+{%endblock column2%}

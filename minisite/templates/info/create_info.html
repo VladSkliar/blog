@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load l10n%}
+{% load staticfiles %}
+
+{% block title %}
+{% trans 'Infopage' %}
+{% endblock %}
+
+{%block header%}
+  <h2> {% trans 'Add information about you' %}</h2>
+{%endblock header%}
+
+{%block column2%}
+  <form role="form" method="post" action="{% url "create_info" %}" enctype="multipart/form-data">
+    {% csrf_token%}
+    <div class="form-group">
+      <label for="first_name">{% trans 'First name' %}:</label>
+      <input class="form-control" type="text" name="first_name"  id="first_name" value={{form.first_name.value|default_if_none:""}}>
+      {%if form.first_name.errors%}
+        <div class="alert alert-danger" role="alert">
+          {{form.first_name.errors}}
+        </div>
+      {%endif%}
+    </div>
+    <div class="form-group">
+      <label for="last_name">{% trans 'Last name' %}:</label>
+      <input class="form-control" type="text" name="last_name" v id="last_name" value={{form.last_name.value|default_if_none:""}}>
+      {%if form.first_name.errors%}
+        <div class="alert alert-danger" role="alert">
+          {{form.last_name.errors}}
+        </div>
+      {%endif%}
+    </div>
+    <div class="form-group">
+      <label for="bio">{% trans 'Biography' %}:</label>
+      <input class="form-control" type="text" name="bio" id="bio" value={{form.bio.value|default_if_none:""}}>
+      {%if form.bio.errors%}
+        <div class="alert alert-danger" role="alert">
+          {{form.bio.errors}}
+        </div>
+      {%endif%}
+    </div>
+    <div class="form-group">
+      <label for="image">{% trans 'Image' %}:</label>
+      <input  class="form-control" type="file" name="image" id="image" value={{form.image.value|default_if_none:""}}>
+      {%if form.image.errors%}
+        <div class="alert alert-danger" role="alert">
+          {{form.image.errors}}
+        </div>
+      {%endif%}
+    </div>
+    <div class="form-group">
+      <label for="birthdate">{% trans 'Birtdate' %}:</label>
+      <input class="form-control" type="text" name="birthdate"  id="datepicker" value={{form.birthdate.value|default_if_none:""}}>
+      {%if form.birthdate.errors%}
+        <div class="alert alert-danger" role="alert">
+          {{form.birthdate.errors}}
+        </div>
+      {%endif%}
+    </div>
+    <div class="form-group">
+      <label for="jabber">{% trans 'Jabber' %}:</label>
+      <input class="form-control" type="text" name="jabber" id="jabber" placeholder="Add your Jabber" value={{contact.jabber|default_if_none:""}}>
+      {%if contact_form.jabber.errors%}
+        <div class="alert alert-danger" role="alert">
+          {{contact_form.jabber.errors}}
+        </div>
+      {%endif%}
+    </div>
+    <div class="form-group">
+      <label for="skype_id">{% trans 'Skype' %}:</label>
+      <input class="form-control" type="text" name="skype" id="skype" placeholder="Add your Skype" value={{contact.skype_id|default_if_none:""}}>
+      {%if contact_form.skype_id.errors%}
+        <div class="alert alert-danger" role="alert">
+          {{contact_form.skype_id.errors}}
+        </div>
+      {%endif%}
+    </div>
+    <div class="form-group">
+      <label for="other_contacts">{% trans 'Ohter contacts' %}:</label>
+      <input class="form-control" type="text" name="other_contacts" id="other_contacts" placeholder="Add your other contacts" value={{contact.other_contacts|default_if_none:""}} >
+      {%if contact_form.other_contacts.errors%}
+        <div class="alert alert-danger" role="alert">
+          {{contact_form.other_contacts.errors}}
+        </div>
+      {%endif%}
+    </div>
+    <br><button type="submit" class="btn btn-success">{% trans 'Add information' %}</button>
+  </form >
+  <script src="{% static 'js/datepicker.js' %}"></script>
+{%endblock column2%}

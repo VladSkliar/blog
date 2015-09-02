@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load l10n%}
+
+{% block title %}
+{% trans 'Latest requests' %}
+{% endblock %}
+
+{%block header%}
+<h2>{% trans 'Latest requests' %}</h2>
+{% endblock %}
+
+{% block list %}
+<ul class="list-group">
+  {% for request in list %}
+      <li class="list-group-item" style='width: 500px;'>{{ request }} </li>
+  {% endfor %}
+</ul>
+{% endblock %}

@@ -1,0 +1,83 @@
+<!DOCTYPE>
+{% load staticfiles %}
+{% load i18n %}
+{% load l10n%}
+{% get_current_language as LANGUAGE_CODE %}
+{% get_available_languages as languages %}
+
+<html lang="{{LANGUAGE_CODE}}">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+    {% block title %}
+    {% endblock %}
+    </title>
+    {% block style %}
+    {% endblock %}
+    <link rel="shortcut icon" href="{% static 'img/favicon.ico' %}"/>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'css/clean-blog.css' %}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+
+  <body>
+    {% include "include/menu.html"%}
+    <header class="intro-header">
+      <div class="container">
+          <div class="row">
+              <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="site-heading">
+                {%block header%}
+                {%endblock%}
+                </div>
+              </div>
+          </div>
+      </div>
+    </header>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-preview">
+                  {%block list%}
+                  {%endblock%}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        {%block article%}
+        {%endblock%}
+        </div>
+      </div>
+    </div>
+
+
+    <div class="row">
+      <div class="col-xs-1 col-sm-1">
+      {%block column0%}
+      {%endblock%}
+      </div>
+      <div class="col-xs-4 col-sm-3">
+        {%block column1%}
+        {%endblock column1%}
+      </div>
+      <div class="col-xs-5 col-md-3">
+        {%block column2%}
+        {%endblock column2%}
+      </div>
+    </div>
+    <script >var CSRF_TOKEN = "{{ csrf_token }}"</script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+  </body>
+
+  {% block footer %}
+  {% include "include/footer.html"%}
+  {% endblock footer%}
+
+</html>

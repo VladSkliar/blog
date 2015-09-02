@@ -1,1 +1,1 @@
-web: gunicorn minisite.wgsi
+web: gunicorn serene-waters-1622.minisite.wgsi

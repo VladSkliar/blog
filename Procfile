@@ -1,1 +1,1 @@
-web: gunicorn serene-waters-1622.minisite.wgsi
+web: gunicorn minisite.wsgi --log-file -

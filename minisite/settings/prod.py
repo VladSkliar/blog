@@ -10,4 +10,6 @@ ALLOWED_HOSTS = ['*']
 
 STATIC_ROOT = 'staticfiles'
 
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+
 DEBUG = False

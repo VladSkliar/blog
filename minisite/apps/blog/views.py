@@ -38,6 +38,12 @@ class PostDetailView(DetailView):
     model = Post
     template_name = 'blog/post.html'
 
+    def get_context_data(self, **kwargs):
+        context = super(PostDetailView, self).get_context_data(**kwargs)
+        context['rating'] = PostRating.objects.filter(Q(user=self.request.user.username) &
+                                                      Q(post=kwargs['pk']))
+        return context
+
 
 class PostCreationView(LoginRequiredMixin, CreateView):
     model = Post

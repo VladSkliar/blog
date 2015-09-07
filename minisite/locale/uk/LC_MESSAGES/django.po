@@ -37,7 +37,7 @@ msgstr "Будь ласка, введіть ваше прізвище"
 
 #: minisite/apps/info/forms.py:25
 msgid "Please enter your birthdate"
-msgstr "Будь ласка, введіть дату вашеого народження"
+msgstr "Будь ласка, введіть дату вашого народження"
 
 #: minisite/apps/info/forms.py:26
 msgid "Plese enter correct birthdate"
@@ -365,4 +365,4 @@ msgstr "Реєстрація"
 #~ msgstr "Підтвердження паролю"
 
 #~ msgid "All form fields are required"
-#~ msgstr "Всі поля форми заповненні правильно"
+#~ msgstr "Всі поля форми заповненні Вірно"

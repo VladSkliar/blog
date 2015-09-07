@@ -51,7 +51,7 @@
   {% endif %}
   <form action="" method="post" class='rate'>
     {% csrf_token %}
-    <input type="number" name="My Rating System" id="Demo" class="rating" data-clearable="remove"/>
+    <input type="number" name="My Rating System" id="Demo" class="rating" data-clearable="remove" value="3"/>
   </form>
   {% disqus_show_comments %}
 {% endblock%}

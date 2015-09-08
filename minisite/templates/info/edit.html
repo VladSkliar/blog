@@ -45,7 +45,7 @@
       {%endif%}
     </div>
     <div class="form-group">
-      <label for="image">{% trans 'Image' %}:</label>
+      <label for="image">{% trans 'Photo' %}:</label>
         {% if info.image %}
           <a class="fancybox" href="{{ info.image.url }}">
             {% thumbnail info.image "100x100"  as im %}
@@ -63,7 +63,7 @@
     </div>
     <div class="form-group">
       <label for="birthdate">{% trans 'Birtdate' %}:</label>
-      <input class="form-control" type="text" name="birthdate"  id="datepicker" value={{form.birthdate.value|default_if_none:""|date:"SHORT_DATE_FORMAT"}}>
+      <input class="form-control" type="text" name="birthdate" id="datepicker" value={{form.birthdate.value|default_if_none:""|date:'m/d/Y'}}>
       {%if form.birthdate.errors%}
         <div class="alert alert-danger" role="alert">
           {{form.birthdate.errors}}

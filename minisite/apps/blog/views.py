@@ -40,10 +40,14 @@ class PostDetailView(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super(PostDetailView, self).get_context_data(**kwargs)
-        rating = PostRating.objects.filter(Q(user=self.request.user.username) &
-                                                      Q(post=self.kwargs['pk']))
-        for obj in rating:
-            context['rating'] = obj.value
+        ratings = PostRating.objects.filter(post=self.kwargs['pk'])
+        value_sum = 0
+        for rate in ratings:
+            if rate.user == self.request.user.username:
+                context['my_rating'] = rate.value
+            value_sum += rate.value
+        context['post_rating'] = float(value_sum)/float(ratings.count())
+        print context['post_rating']
         return context
 
 

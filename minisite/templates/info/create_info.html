@@ -4,11 +4,11 @@
 {% load staticfiles %}
 
 {% block title %}
-{% trans 'Infopage' %}
+{% trans 'Add your information' %}
 {% endblock %}
 
 {%block header%}
-  <h2> {% trans 'Add information about you' %}</h2>
+  <h2> {% trans 'Add your information' %}</h2>
 {%endblock header%}
 
 {%block column2%}
@@ -25,7 +25,7 @@
     </div>
     <div class="form-group">
       <label for="last_name">{% trans 'Last name' %}:</label>
-      <input class="form-control" type="text" name="last_name" v id="last_name" value={{form.last_name.value|default_if_none:""}}>
+      <input class="form-control" type="text" name="last_name" v id="last_name" value={{form.last_name.value|default_if_none:}}>
       {%if form.last_name.errors%}
         <div class="alert alert-danger" role="alert">
           {{form.last_name.errors}}
@@ -34,7 +34,7 @@
     </div>
     <div class="form-group">
       <label for="bio">{% trans 'Biography' %}:</label>
-      <input class="form-control" type="text" name="bio" id="bio" value={{form.bio.value|default_if_none:""}}>
+      <input class="form-control" type="text" name="bio" id="bio" value={{form.bio.value|safe|default_if_none:""}}>
       {%if form.bio.errors%}
         <div class="alert alert-danger" role="alert">
           {{form.bio.errors}}
@@ -42,7 +42,7 @@
       {%endif%}
     </div>
     <div class="form-group">
-      <label for="image">{% trans 'Image' %}:</label>
+      <label for="image">{% trans 'Photo' %}:</label>
       <input  class="form-control" type="file" name="image" id="image" value={{form.image.value|default_if_none:""}}>
       {%if form.image.errors%}
         <div class="alert alert-danger" role="alert">
@@ -52,7 +52,7 @@
     </div>
     <div class="form-group">
       <label for="birthdate">{% trans 'Birtdate' %}:</label>
-      <input class="form-control" type="text" name="birthdate"  id="datepicker" value={{form.birthdate.value|default_if_none:""}}>
+      <input class="form-control" type="text" name="birthdate"  id="datepicker" value={{form.birthdate.value|default_if_none:""|date:"SHORT_DATE_FORMAT"}}>
       {%if form.birthdate.errors%}
         <div class="alert alert-danger" role="alert">
           {{form.birthdate.errors}}

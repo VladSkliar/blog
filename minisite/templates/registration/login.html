@@ -9,16 +9,15 @@
 {%block header%}
 <h2>{% trans 'Login' %}</h2>
 {%endblock header%}
-{%block column1%}
-  {%if error_msg%}
-    <div class="alert alert-danger" role="alert">
-      {{error_msg}}
-    </div>
-  {%endif%}
-{%endblock column1%}
+
 {%block column2%}
   <form action='{% url "login" %}' method='post'>
     {% csrf_token%}
+    {%if error_msg%}
+      <div class="alert alert-danger" role="alert">
+        {{error_msg}}
+      </div>
+    {%endif%}
     <div class="form-group">
       <label for="username">{% trans 'Username (email)' %}:</label>
       <input class="form-control" type="text" name="username_or_email" id="username" value={{ username_or_email|default_if_none:''}}>

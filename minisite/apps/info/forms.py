@@ -1,4 +1,5 @@
 from info.models import Info
+from django import forms
 from django.forms import ModelForm
 from django.forms.extras.widgets import SelectDateWidget
 from django.forms.widgets import EmailInput
@@ -33,6 +34,15 @@ class InfoForm(ModelForm):
 
 
 class MyUserCreationForm(UserCreationForm):
+    username = forms.RegexField(
+        label=_("Username"), max_length=30,
+        regex=r'^[\w.@+-]+$',
+        help_text=_("Required. 30 characters or fewer. Letters, digits and "
+                    "@/./+/-/_ only."),
+        error_messages={
+            'invalid': _("This value may contain only english letters, numbers"
+                         " and @/./+/-/_ characters.")})
+
     class Meta:
         model = User
         fields = ("username", 'email')

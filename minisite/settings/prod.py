@@ -15,9 +15,9 @@ BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 DATABASES = {
     'default': {
              'ENGINE': 'django.db.backends.postgresql_psycopg2',
-             'NAME': 'd29j9j5j5gqn15',
-             'USER': 'hchknkhewtptde',
-             'PASSWORD': 'FGyHQP94PNWhZuPb0hEZOcVB90',
-             'HOST': 'ec2-107-21-106-196.compute-1.amazonaws.com',
+             'NAME': 'd9hot5t75935ag',
+             'USER': 'javxneutvfsgve',
+             'PASSWORD': 'mDoxBDWreCXVyjLcx58_Djjhn1',
+             'HOST': 'ec2-54-235-162-144.compute-1.amazonaws.com',
              'PORT': '5432'}
 }

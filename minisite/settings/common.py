@@ -13,8 +13,6 @@ import sys
 import os
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
-SECRET_KEY = 'd6%)2hin&dzkai1ycfqd(4q^cx*t(rj7tr+otzl^5g7!g54&@j'
-# SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
 TEMPLATE_DEBUG = True
@@ -112,10 +110,6 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 
 )
-
-DISQUS_API_KEY = 'qqq'
-
-DISQUS_WEBSITE_SHORTNAME = 'minisite'
 
 CKEDITOR_UPLOAD_PATH = "uploads/"
 

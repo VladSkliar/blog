@@ -5,5 +5,3 @@ EMAIL_BACKEND = "djrill.mail.backends.djrill.DjrillBackend"
 DEBUG = True
 
 MANDRILL_API_KEY = "84r7I2irZA34F-bdxMPsYQ"
-
-SECRET_KEY = 'd6%)2hin&dzkai1ycfqd(4q^cx*t(rj7tr+otzl^5g7!g54&@j'

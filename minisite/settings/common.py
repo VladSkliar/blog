@@ -13,6 +13,8 @@ import sys
 import os
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
+SECRET_KEY = 'd6%)2hin&dzkai1ycfqd(4q^cx*t(rj7tr+otzl^5g7!g54&@j'
+
 DEBUG = False
 
 TEMPLATE_DEBUG = True

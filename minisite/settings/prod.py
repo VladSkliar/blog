@@ -14,7 +14,7 @@ BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 DISQUS_API_KEY = 'MTo8ccda8F7ewHnYwpscUG9Kt3A6r1yBBxdUM9vv6k1OGl9u6g6MitmHJCGeaXCv'
 
-DISQUS_WEBSITE_SHORTNAME = 'skliar.herokuapp.com'
+DISQUS_WEBSITE_SHORTNAME = 'skliar'
 
 DATABASES = {
     'default': {

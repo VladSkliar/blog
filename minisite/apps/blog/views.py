@@ -46,7 +46,8 @@ class PostDetailView(DetailView):
             if rate.user == self.request.user.username:
                 context['my_rating'] = rate.value
             value_sum += rate.value
-        context['post_rating'] = float(value_sum)/float(ratings.count())
+        if ratings.count() > 0:
+            context['post_rating'] = float(value_sum)/float(ratings.count())
         print context['post_rating']
         return context
 

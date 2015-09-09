@@ -48,7 +48,6 @@ class PostDetailView(DetailView):
             value_sum += rate.value
         if ratings.count() > 0:
             context['post_rating'] = float(value_sum)/float(ratings.count())
-        print context['post_rating']
         return context
 
 

@@ -4,6 +4,8 @@ django-disqus==0.5
 django-rosetta==0.7.6
 django-model-utils==2.3.1
 django-braces==1.8.1
+solid-i18n==1.1.0
+sorl-thumbnail==12.2
 psycopg2==2.6.1
 funcsigs==0.4
 microsofttranslator==0.5
@@ -13,10 +15,7 @@ Pillow==2.3.0
 polib==1.0.7
 requests==2.7.0
 six==1.9.0
-solid-i18n==1.1.0
-sorl-thumbnail==12.2
 wheel==0.24.0
 djrill==1.4.0
-gunicorn==19.3.0
 dj-database-url==0.3.0
 dj-static==0.0.6

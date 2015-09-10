@@ -74,11 +74,11 @@ def login_view(request):
         else:
             user = authenticate(username=possible_user.username,
                                 password=password)
-            if user == 'AnonymousUser':
+            if user is None:
                 error_msg = _('Username/password is wrong')
             else:
                 login(request, user)
-            return HttpResponseRedirect(reverse('index'))
+                return HttpResponseRedirect(reverse('index'))
     else:
         return render_to_response('registration/login.html', {}, context)
     return render_to_response('registration/login.html', {

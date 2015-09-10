@@ -15,8 +15,6 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 DEBUG = False
 
-SECRET_KEY = 'd6%)2hin&dzkai1ycfqd(4q^cx*t(rj7tr+otzl^5g7!g54&@j'
-
 TEMPLATE_DEBUG = True
 
 TEMPLATE_DIRS = (

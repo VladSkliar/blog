@@ -4,13 +4,11 @@ My first web-project - Simple Blog. In the development of this project has been 
 
 ### Installation
 
-Just do:
+Just clone repo and change directory. Than open your virtual environment and install requirements package:
 ```sh
-$ git clone https://github.com/VladSkliar/blog blog
-$ cd blog
 $ pip install -r requirements.txt
 ```
-In setting need to add that field:
+In setting add that field:
 ```sh
 MANDRILL_API_KEY = "*"
 

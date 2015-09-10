@@ -74,7 +74,7 @@ def login_view(request):
         else:
             user = authenticate(username=possible_user.username,
                                 password=password)
-            if user = 'AnonymousUser':
+            if user == 'AnonymousUser':
                 error_msg = _('Username/password is wrong')
             else:
                 login(request, user)

@@ -5,7 +5,9 @@ from django.forms.extras.widgets import SelectDateWidget
 from django.forms.widgets import EmailInput
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.tokens import default_token_generator
 from django.utils.translation import ugettext_lazy as _
+from django.contrib.auth.forms import PasswordResetForm
 
 
 class InfoForm(ModelForm):
@@ -40,9 +42,26 @@ class MyUserCreationForm(UserCreationForm):
         help_text=_("Required. 30 characters or fewer. Letters, digits and "
                     "@/./+/-/_ only."),
         error_messages={
+            'required': _('Please enter username'),
             'invalid': _("This value may contain only english letters, numbers"
                          " and @/./+/-/_ characters.")})
 
     class Meta:
         model = User
         fields = ("username", 'email')
+
+    def clean_email(self):
+        email = self.cleaned_data.get('email')
+        username = self.cleaned_data.get('username')
+        if email and User.objects.filter(email=email).exclude(username=username).count():
+            raise forms.ValidationError(_('User with that email are register.'))
+        return email
+
+
+class MyPasswordResetForm(PasswordResetForm):
+
+    def clean_email(self):
+        email = self.cleaned_data["email"]
+        if User.objects.filter(email=email).count() == 0:
+            raise forms.ValidationError(_('This email are not register'))
+        return self.cleaned_data['email']

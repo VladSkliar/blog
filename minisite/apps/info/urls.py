@@ -2,6 +2,7 @@ from django.conf.urls import patterns, url
 from info import views
 from django.contrib.auth import views as reset_views
 from django.core.urlresolvers import reverse_lazy
+from info import forms
 
 urlpatterns = patterns(
   'info.views',
@@ -16,8 +17,10 @@ urlpatterns = patterns(
       name='invite_register'),
   url(r'^login/$', 'login_view', name='login'),
   url(r'^logout/$', views.LogoutView.as_view(), name='logout'),
+
   url(r'^user/password/reset/$', reset_views.password_reset,
-      {'post_reset_redirect': reverse_lazy('reset_done')},
+      {'post_reset_redirect': reverse_lazy('reset_done'),
+       'password_reset_form': forms.MyPasswordResetForm,},
       name="password_reset"),
   url(r'^user/password/reset/done/$',
       reset_views.password_reset_done,

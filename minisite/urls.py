@@ -21,8 +21,7 @@ urlpatterns += solid_i18n_patterns(
   url(r'^info/', include('info.urls')),
   url(r'^admin/', include(admin.site.urls)),
   url(r'^blog/', include('blog.urls')),
-  url(r'^index/$', views.PostsIndexListView.as_view(), name='index'),
-  url(r'^$', RedirectView.as_view(url='/index')),
+  url(r'^$', views.PostsIndexListView.as_view(), name='index'),
   url(r'^ckeditor/', include('ckeditor.urls')),
 
   )

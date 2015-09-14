@@ -1,8 +1,11 @@
+import datetime
+
 from django.db import models
 from django.contrib.auth.models import User
+
+from minisite.settings import common
 from ckeditor.fields import RichTextField
 from model_utils.fields import MonitorField
-import datetime
 
 
 class Post(models.Model):

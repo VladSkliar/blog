@@ -2,16 +2,16 @@
 {% load i18n %}
 {% load l10n%}
 
-<button id="opener" class="btn btn-primary"> {% trans 'Invite' %}</button>
+
 <div id="dialog" title="Invite form">
     <p class="validateTips"></p>
-    <form>
-        <fieldset>
+    <form >
         {%csrf_token%}
         <label for="email"> {% trans 'Email' %}</label>
         <input type="text"  name="email" id="email" value="" class="form-control">
-        <input type="submit" tabindex="-1" style="position:absolute; top:-1000px">
-        </fieldset>
     </form>
 </div>
+
+<button id="opener" class="btn btn-primary"> {% trans 'Invite' %}</button>
+
 <script src="{% static 'js/invite.js' %}"></script>

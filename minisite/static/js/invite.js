@@ -1,7 +1,5 @@
 $(document).ready(function() {
-$( "#opener" ).click(function() {
-        $( "#dialog" ).dialog( "open" );
-        });
+
     var dialog, form
     var lang = $('html').attr('lang');
       emailRegex = /^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/,
@@ -60,20 +58,20 @@ $( "#opener" ).click(function() {
     }
 
     dialog = $( "#dialog" ).dialog({
+      position: { my: "center bottom", at: "center center", of: window },
       autoOpen: false,
-      height: 300,
-      width: 350,
       modal: true,
+      resizable: false,
       buttons: {
-        "Invite your friends": addInvite,
-        Cancel: function() {
-          dialog.dialog( "close" );
-        }
-      }
+        "Invite your friend": addInvite
+      },
     });
 
     form = dialog.find( "form" ).on( "submit", function( event ) {
       event.preventDefault();
       addInvite();
+    });
+    $( "#opener" ).button().on( "click", function() {
+      dialog.dialog( "open" );
     });
 })

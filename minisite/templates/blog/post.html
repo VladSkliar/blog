@@ -38,7 +38,9 @@
     <h1>{{ post.title }}</h1>
     {{ post.text|safe }}
     <p>{% trans 'Author' %}: {{ post.author }} </p>
-    <p>{% trans 'Post rating' %}:  {{post_rating}}/5</p>
+    {% if post_rating %}
+      <p>{% trans 'Post rating' %}:  {{post_rating}}/5</p>
+    {%endif%}
     <p>{% trans 'Date published' %}: {{ post.created_at}}</p>
     <p>
       <a href="{% url 'update_post' pk=post.id %}">
@@ -53,7 +55,8 @@
   {% endif %}
   <form action="" method="post" class='rate'>
     {% csrf_token %}
-    <input type="number" name="My Rating System" id="Demo" class="rating" data-clearable="remove" value='{{my_rating}}'/>
+    <h3>{% trans 'My rating' %}</h3>
+    <input type="number" name="My Rating System" id="Demo" class="rating" data-clearable="remove" value='{{my_rating}}|default_if_none:0'/>
   </form>
   {% disqus_show_comments %}
 {% endblock%}

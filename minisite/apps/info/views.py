@@ -2,7 +2,7 @@ from django.views.generic.edit import FormView
 from django.views.generic.base import View
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.models import User
-from django.core.urlresolvers import reverse
+from django.core.urlresolvers import reverse, reverse_lazy
 from django.core.mail import send_mail
 from django.http import HttpResponseRedirect, HttpResponse, JsonResponse
 from django.template import RequestContext
@@ -70,15 +70,15 @@ def login_view(request):
                 (Q(email=username_or_email) | Q(username=username_or_email)) &
                 Q(is_active=True)).first()
         if possible_user is None:
-                error_msg = _('Username/password is wrong')
+                error_msg = _("Provided wrong credentials data")
         else:
             user = authenticate(username=possible_user.username,
                                 password=password)
             if user is None:
-                error_msg = _('Username/password is wrong')
+                error_msg = _("Provided wrong credentials data")
             else:
                 login(request, user)
-                return HttpResponseRedirect(reverse('index'))
+                return HttpResponseRedirect(reverse_lazy('index'))
     else:
         return render_to_response('registration/login.html', {}, context)
     return render_to_response('registration/login.html', {
@@ -93,16 +93,17 @@ class RegisterFormView(FormView):
     template_name = "registration/registration_form.html"
 
     def form_valid(self, form):
-        form.save()
         email = self.request.POST['email']
+        form.save()
         user = authenticate(username=self.request.POST['username'],
-                            password=self.request.POST['password1'])
+                                password=self.request.POST['password1'])
         login(self.request, user)
-        send_mail('Congratulations!!',
-                  'Hi! You are register in our web-site.' + '\n' +
-                  self.request.build_absolute_uri(reverse('index')),
-                  'admin@minisite.com',
-                  [self.request.POST['email']])
+        if email:
+            send_mail('Congratulations!!',
+                      'Hi! You are register in our web-site.' + '\n' +
+                      self.request.build_absolute_uri(reverse('index')),
+                      'admin@minisite.com',
+                      [email])
         return super(RegisterFormView, self).form_valid(form)
 
     def get_success_url(self):
@@ -131,7 +132,7 @@ class InviteRegisterFormView(RegisterFormView):
 class LogoutView(LoginRequiredMixin, View):
     def get(self, request):
         logout(request)
-        return HttpResponseRedirect(reverse('index'))
+        return HttpResponseRedirect(reverse_lazy('index'))
 
 
 def invite(request):

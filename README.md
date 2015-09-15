@@ -37,4 +37,4 @@ $ ./manage.py runserver
 http://startbootstrap.com/template-overviews/clean-blog/
 
 ### View site
-https://skliar.herokuapp.com/uk/index/
+https://skliar.herokuapp.com/

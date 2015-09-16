@@ -56,7 +56,7 @@
   <form action="" method="post" class='rate'>
     {% csrf_token %}
     <h3>{% trans 'My rating' %}</h3>
-    <input type="number" name="My Rating System" id="Demo" class="rating" data-clearable="remove" value='{{my_rating}}|default_if_none:0'/>
+    <input type="number" name="My Rating System" id="Demo" class="rating" data-clearable="remove" value="{{my_rating|default_if_none:0}}"/>
   </form>
   {% disqus_show_comments %}
 {% endblock%}

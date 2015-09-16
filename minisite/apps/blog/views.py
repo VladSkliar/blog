@@ -45,6 +45,9 @@ class PostDetailView(DetailView):
         for rate in ratings:
             if rate.user == self.request.user.username:
                 context['my_rating'] = rate.value
+                if rate.user == '' and\
+                        rate.ip_address == self.request.META['REMOTE_ADDR']:
+                    context['my_rating'] = rate.value
             value_sum += rate.value
         if ratings.count() > 0:
             post_rating = round(float(value_sum)/float(ratings.count()), 1)

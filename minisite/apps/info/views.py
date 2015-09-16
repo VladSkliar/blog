@@ -96,7 +96,7 @@ class RegisterFormView(FormView):
         email = self.request.POST['email']
         form.save()
         user = authenticate(username=self.request.POST['username'],
-                                password=self.request.POST['password1'])
+                            password=self.request.POST['password1'])
         login(self.request, user)
         if email:
             send_mail('Congratulations!!',

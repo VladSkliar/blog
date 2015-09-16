@@ -91,14 +91,14 @@ def activate_post(request, *args, **kwargs):
 def rate(request, **kwargs):
     if request.method == "POST":
         if request.user.is_authenticated():
-            rating, is_created = PostRating.objects.get_or_create(
+            rating, is_created = PostRating.objects.update_or_create(
                 user=request.user.username,
                 post=kwargs['pk'],
                 ip_address=request.META['REMOTE_ADDR'],)
             rating.value = request.POST['rating']
             rating.save()
         else:
-            rating, is_created = PostRating.objects.get_or_create(
+            rating, is_created = PostRating.objects.update_or_create(
                 user='',
                 post=kwargs['pk'],
                 ip_address=request.META['REMOTE_ADDR'],)

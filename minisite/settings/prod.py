@@ -25,3 +25,5 @@ DATABASES = {
              'HOST': 'ec2-54-235-162-144.compute-1.amazonaws.com',
              'PORT': '5432'}
 }
+
+DEBUG = False

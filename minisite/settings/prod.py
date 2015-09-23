@@ -14,6 +14,8 @@ STATIC_ROOT = 'staticfiles'
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
 DISQUS_API_KEY = 'MTo8ccda8F7ewHnYwpscUG9Kt3A6r1yBBxdUM9vv6k1OGl9u6g6MitmHJCGeaXCv'
 
 DISQUS_WEBSITE_SHORTNAME = 'skliar'
@@ -27,5 +29,3 @@ DATABASES = {
              'HOST': 'ec2-54-235-162-144.compute-1.amazonaws.com',
              'PORT': '5432'}
 }
-
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')

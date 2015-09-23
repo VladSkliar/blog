@@ -25,12 +25,13 @@ urlpatterns += solid_i18n_patterns(
   url(r'^ckeditor/', include('ckeditor.urls')),
 
   )
+urlpatterns += static(settings.MEDIA_URL,
+                      document_root=settings.MEDIA_ROOT)
 
 if settings.DEBUG:
     urlpatterns += static(settings.STATIC_URL,
                           document_root=settings.STATIC_ROOT)
-    urlpatterns += static(settings.MEDIA_URL,
-                          document_root=settings.MEDIA_ROOT)
+
 
 if 'rosetta' in settings.INSTALLED_APPS:
     urlpatterns += patterns(

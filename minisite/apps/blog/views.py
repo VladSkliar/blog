@@ -3,7 +3,7 @@ import datetime
 from django.views.generic import ListView, DetailView, CreateView, UpdateView
 from django.core.urlresolvers import reverse
 from django.shortcuts import get_object_or_404
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponse
 from django.db.models import Q
 
 from blog.models import Post, PostRating

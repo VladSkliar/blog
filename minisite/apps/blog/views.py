@@ -99,7 +99,7 @@ def rate(request, **kwargs):
 
             rating.save()
         else:
-            rating, created = PostRating.get_or_create(
+            rating, created = PostRating.objects.get_or_create(
                 user='',
                 post=kwargs['pk'],
                 ip_address=request.META['HTTP_X_FORWARDED_FOR'],)

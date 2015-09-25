@@ -105,6 +105,4 @@ def rate(request, **kwargs):
                 ip_address=request.META['HTTP_X_FORWARDED_FOR'],)
             rating.value = request.POST['rating']
             rating.save()
-
-    return HttpResponseRedirect(reverse('post_detail',
-                                        kwargs={'pk': kwargs['pk']}))
+    return HttpResponse('Your rate is add')

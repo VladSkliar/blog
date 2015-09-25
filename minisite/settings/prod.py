@@ -2,7 +2,7 @@ from dev import *
 
 import dj_database_url
 
-DEBUG = False
+DEBUG = True
 
 DATABASES['default'] = dj_database_url.config()
 

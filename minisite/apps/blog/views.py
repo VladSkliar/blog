@@ -46,7 +46,7 @@ class PostDetailView(DetailView):
             if rate.user == self.request.user.username:
                 context['my_rating'] = rate.value
                 if rate.user == '' and\
-                        rate.ip_address == self.request.META['REMOTE_ADDR']:
+                        rate.ip_address == self.request.META['HTTP_X_FORWARDED_FOR']:
                     context['my_rating'] = rate.value
             value_sum += rate.value
         if ratings.count() > 0:
@@ -94,14 +94,15 @@ def rate(request, **kwargs):
             rating, created = PostRating.objects.get_or_create(
                 user=request.user.username,
                 post=kwargs['pk'],)
-            rating.ip_address = request.META['REMOTE_ADDR']
+            rating.ip_address = request.META['HTTP_X_FORWARDED_FOR']
             rating.value = request.POST['rating']
 
             rating.save()
         else:
-            rating, created = PostRating.objects.filter(user='').get_or_create(
+            rating, created = PostRating.get_or_create(
+                user='',
                 post=kwargs['pk'],
-                ip_address=request.META['REMOTE_ADDR'],)
+                ip_address=request.META['HTTP_X_FORWARDED_FOR'],)
             rating.value = request.POST['rating']
             rating.save()
 

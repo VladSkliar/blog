@@ -26,6 +26,3 @@ class PostRating(models.Model):
     post = models.PositiveSmallIntegerField()
     value = models.PositiveSmallIntegerField(default=0)
     ip_address = models.IPAddressField(blank=True)
-
-    class Meta:
-        unique_together = ('user', 'post')

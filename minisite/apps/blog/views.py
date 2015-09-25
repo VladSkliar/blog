@@ -93,8 +93,8 @@ def rate(request, **kwargs):
         if request.user.is_authenticated():
             rating, created = PostRating.objects.get_or_create(
                 user=request.user.username,
-                post=kwargs['pk'],
-                ip_address=request.META['REMOTE_ADDR'],)
+                post=kwargs['pk'],)
+            rating.ip_address = request.META['REMOTE_ADDR']
             rating.value = request.POST['rating']
 
             rating.save()

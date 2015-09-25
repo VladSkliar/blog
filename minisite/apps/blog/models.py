@@ -28,4 +28,4 @@ class PostRating(models.Model):
     ip_address = models.IPAddressField(blank=True)
 
     class Meta:
-        unique_together = ("user", "post")
+        unique_together = ('user', 'post')

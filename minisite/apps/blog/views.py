@@ -100,10 +100,10 @@ def rate(request, **kwargs):
             rating.save()
         else:
             rating, created = PostRating.objects.get_or_create(
-                user='',
                 post=kwargs['pk'],
                 ip_address=request.META['REMOTE_ADDR'],)
             rating.value = request.POST['rating']
+            rating.user = ''
             rating.save()
 
     return HttpResponseRedirect(reverse('post_detail',
